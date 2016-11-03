@@ -31,6 +31,7 @@ module System.Socket.Protocol.SCTP.Internal
   , InitMessage (..)
   -- ** Events
   , Events (..)
+  , msgNotification
   ) where
 
 import Control.Applicative
@@ -350,6 +351,9 @@ instance SocketOption Events where
 
   setSocketOption sock value =
     unsafeSetSocketOption sock (#const IPPROTO_SCTP) (#const SCTP_EVENTS) value
+
+msgNotification :: MessageFlags
+msgNotification = MessageFlags (#const MSG_NOTIFICATION)
 
 ------------------------------------------------------------------------
 -- FFI
